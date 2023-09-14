@@ -13,7 +13,6 @@ public class Main {
         for(char ch : s.toCharArray()) {
             arr[ch - 'a']++;
         }
-        
         int count = 0;
         Set<Integer> set = new HashSet();
         for(int i = 0; i < 26; i++) {
@@ -28,8 +27,6 @@ public class Main {
         
     
     }
-
-    
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head = new ListNode(0);
@@ -51,5 +48,25 @@ public class Main {
             finalList = finalList.next;
         }
         return head.next;
+    }
+
+          public ListNode insertGreatestCommonDivisors(ListNode head){  
+            ListNode myTracker = head;
+            while( head!= null && head.next != null){
+            ListNode insert = new ListNode(gcd(head.val, head.next.val));    
+                ListNode copyNext = head.next;
+                head.next = insert;
+                insert.next = copyNext;
+                head = head.next.next;
+        } 
+            return myTracker;
+    }
+    private int gcd(int a, int b) {
+      while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
     }
 }
